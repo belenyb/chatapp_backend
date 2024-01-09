@@ -29,7 +29,7 @@ const createUser = async (req, res = response) => {
 
     return res.json({
       ok: true,
-      body: user,
+      user: user,
       token
     });
 
@@ -68,10 +68,11 @@ const login = async (req, res = response) => {
     }
 
     const token = await createJWT(userDB.id);
+    console.log(`Valid token: ${token}`);
 
     return res.json({
       ok: true,
-      body: userDB,
+      user: userDB,
       token
     });
 
@@ -90,7 +91,7 @@ const renewToken = async (req, res = response) => {
   const userDB = await User.findById(uid);
   res.json({
     ok: true,
-    userDB,
+    user: userDB,
     token
   });
 }

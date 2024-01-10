@@ -1,6 +1,6 @@
 const { checkJWT } = require('../helpers/jwt');
 const { io } = require('../index');
-const { userConnected, userDisconnected } = require('../controllers/socket');
+const { userConnected, userDisconnected, saveMessage } = require('../controllers/socket');
 
 // Mensajes de Sockets
 io.on('connection', client => {
@@ -14,6 +14,16 @@ io.on('connection', client => {
 
   // Client connected
   userConnected(uid);
+
+  // Add user to private room
+  client.join(uid);
+
+  // Listen to personal-message
+  client.on('personal-message', async (payload) => {
+    await saveMessage(payload);
+    // Send message from server to Flutter app
+    io.to(payload.to).emit('personal-message', payload)
+  })
 
 
   client.on('disconnect', () => {

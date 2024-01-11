@@ -28,7 +28,7 @@ The chat page provides a user-friendly interface for users to engage in real-tim
 <img src="assets/docs/chat.png" width=200 height=auto alt="Chat screen" />
 
 ## Backend features
-To check out this repo, click [here](https://github.com/belenyb/chatapp_backend.git).
+
 ### Real-time Messaging
 Users can send and receive messages in real-time, providing a smooth and interactive chat experience.
 
